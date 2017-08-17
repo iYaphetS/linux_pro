@@ -1,0 +1,10 @@
+1. 先编译成二进制文件
+	gcc -c lib.c
+	
+2. 打包静态库
+	ar rcs libmylib.a lib.o
+	
+3. 链接库是，如果有同名的动态库和静态库，默认是链接动态库（如果动态库环境配置好了）
+如果需要链接静态库需要加 -static, 如果不同名就不用加了
+	gcc testlib.c -lmylib -L. -static
+	

@@ -1,0 +1,18 @@
+1. 编译动态库 
+	gcc -shared -fpic -o libmylib.so lib.c
+	shared--指定是动态库
+	fpic固定写法
+	libmylib.so中mylib是动态库的名字，默认前面加lib，后面加.s0
+	lib.c程序名
+
+2. 编译测试程序用到外部变量需链接库
+	gcc testlib.c -L. -lmylib
+	-L.指定到当前目录找动态库
+	
+3. 程序运行也需要找动态库
+方法一：
+	export LD_LIBRARY_PATH=.
+	导入库搜索路径为当前目录，设置的环境变量只在此终端有效,需要永久有效需要在/etc/profile文件中加上	export LD_LIBRARY_PATH=.
+
+方法二：
+	将动态库拷贝到/usr/lib下
